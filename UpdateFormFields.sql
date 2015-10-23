@@ -43,3 +43,22 @@ select locale,'rptEMEATimberStdDoorSizes',colname,colnumber,'Timber Doorset Stan
 where formname='rptEMEADoorSummary'
 GO
 
+INSERT INTO AAOS_UAT_UK.dbo.formfields
+(
+	locale,
+	formname,
+	colname,
+	colnumber,
+	visiblecoltext,
+	usage1name,
+	usage1value,
+	usage2name,
+	usage2value,
+	defaultwidth,
+	[required]
+)
+	'EN',
+	'rptEMEATimberStdDoorSizes',
+	'txtSizeInfo',
+	1,
+	'Sizes for single-acting doors' + CHAR(13)
