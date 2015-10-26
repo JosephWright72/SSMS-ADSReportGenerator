@@ -62,3 +62,14 @@ INSERT INTO AAOS_UAT_UK.dbo.formfields
 	'txtSizeInfo',
 	1,
 	'Sizes for single-acting doors' + CHAR(13)
+GO
+
+UPDATE AAOS_UAT_UK.dbo.formfields 
+SET visiblecoltext='Revision Notes' 
+WHERE ColName = 'lblGenRem' AND Locale = 'EN'
+GO
+
+UPDATE AAOS_UAT_UK.dbo.formfields 
+SET visiblecoltext='Revision No.' 
+WHERE ColName = 'lblRevNo' AND Locale = 'EN'
+GO

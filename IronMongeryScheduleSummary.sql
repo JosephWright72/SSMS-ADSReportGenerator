@@ -1,6 +1,6 @@
 ﻿ DECLARE @ProjectID INT 
  DECLARE @DOORFILTER INT 
- SET @ProjectID = 28520 
+ SET @ProjectID = 28643
  SET @DOORFILTER = 2 
  SET ARITHABORT ON  
  SELECT 
@@ -13,9 +13,9 @@
 	HW.Description ProductCode,  
 	HW.TypeDescription   ProductDescription,  
 	PH.UOM,  
-	Sum(ISNULL(NULLIF(HW.Qty, ''), 0) * ISNULL(Doors.Qty, 1)) Quantity,  
+	Sum(ISNULL(NULLIF(HW.Qty, ''), 0) * ISNULL(NULLIF(Doors.Qty,''), 1)) Quantity,
 	CAST((HW.PRICE/CASE WHEN HW.Qty = 0 THEN 1 ELSE HW.Qty END) AS DECIMAL(18, 2)) AS UnitRate,  
-	(SUM(ISNULL(NULLIF(HW.Qty, ''), 0) * ISNULL(Doors.Qty, 1))) * (CAST((HW.PRICE/CASE WHEN HW.Qty = 0 THEN 1 ELSE HW.Qty END) AS DECIMAL(18, 2))) AS ExtendedRate,  
+	(Sum(ISNULL(NULLIF(HW.Qty, ''), 0) * ISNULL(NULLIF(Doors.Qty,''), 0))) * (CAST((HW.PRICE/CASE WHEN HW.Qty = 0 THEN 1 ELSE HW.Qty END) AS DECIMAL(18, 2))) AS ExtendedRate,  
 	Ltrim(Max(Notes.List)) AS SetNotes , ACS.firstname + ' ' + ACS.lastname ProjectOwner,  
 	CS.firstname + ' ' + CS.lastname SpecConsult,  
 	ACS.Email AS PrjOwnEmail , 
