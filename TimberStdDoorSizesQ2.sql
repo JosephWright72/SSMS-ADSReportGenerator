@@ -1,5 +1,3 @@
-DECLARE @ProjectID INT
-SET @ProjectID = 28618
 SELECT	
 	CASE MAX(AH.Leaf) WHEN 'A' THEN 'Single Leaf' WHEN 'B' THEN 'Equal Leaf Pairs' WHEN  'I' THEN 'Unequal Leaf Pairs' ELSE 'Single Leaf' END AS Leaf,
 	-1 AS ModuleSize,
