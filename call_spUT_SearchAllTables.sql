@@ -1,2 +1,2 @@
-exec dbo.spUT_SearchAllTables '2 Protection Plate'
+exec dbo.spUT_SearchAllTables '686'
 

@@ -1,9 +1,9 @@
 ﻿ DECLARE @ProjectID INT 
  DECLARE @DOORFILTER INT 
- SET @ProjectID = 28643
+ SET @ProjectID = 28520
  SET @DOORFILTER = 2 
  SET ARITHABORT ON  
- SELECT 
+ SELECT APH.ImageID,img.Image_ID,
 	AP.ID ProjectReference,  
 	AP.ProjectName, 
 	CASE WHEN AP.OriginalProjectID IS NOT NULL or AP.OriginalProjectID <> '0' THEN CAST(AP.OriginalProjectID AS nvarchar(max))  +  '-'  +  CAST(AP.RevisionNumber AS nvarchar(max)) ELSE CAST(AP.ID AS nvarchar(max)) END as NewProjID, 
@@ -44,13 +44,13 @@ FROM
 			SELECT ID,ImageIDs FROM AAOSProjectHardware where ProjectID = @ProjectID AND ISNULL(ImageIDs,'') ='' ) x
 			INNER JOIN 
 				(SELECT Image_id, [Filename] 
-				FROM AAOS.dbo.images img 
+				FROM AAOS_UAT_UK.dbo.images img 
 				WHERE (NOT (UPPER([Filename]) LIKE '%.PDF') OR ISNULL([Filename],'') = '')) img 
 			ON  x.ImageID = img.Image_id
 		ON x.ID = APH.ID  GROUP BY [Description], ProjectID ) APH 
 	ON  CAST(HW.[DESCRIPTION] AS VARBINARY(MAX)) =  CAST(APH.[description] AS VARBINARY(MAX)) 
 	AND APH.ProjectID=HW.PROJECTID
-	LEFT OUTER JOIN AAOS.dbo.images img ON APH.ImageID= img.Image_ID
+	LEFT OUTER JOIN AAOS_UAT_UK.dbo.images img ON APH.ImageID= img.Image_ID
 	LEFT OUTER JOIN (
 		SELECT 
 			ProjectID,  
@@ -117,7 +117,7 @@ AND (AP.ID = @ProjectID)
 AND (PH.ProjectID = @ProjectID)  
 AND ISNULL(NULLIF(HW.Qty, ''), 0) != 0  
 AND ISNULL(CASE WHEN DOORS.QTY = 0 THEN 0 WHEN DOORS.QTY > 0 THEN 1 END, 0) =  CASE @DOORFILTER WHEN 0 THEN 1 WHEN 1 THEN 0 ELSE ISNULL(CASE WHEN DOORS.QTY = 0 THEN 0 WHEN DOORS.QTY > 0 THEN 1 END, 0) END 
-GROUP  BY 
+GROUP  BY APH.ImageID,img.Image_ID,
 	AP.ID,
 	AP.ProjectName,
 	AP.OriginalProjectID,
