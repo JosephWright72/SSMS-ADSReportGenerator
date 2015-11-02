@@ -1228,3 +1228,363 @@ VALUES
 )
 GO
 
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblTitle',
+	1,
+	'Door Schedule Summary',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblDoorRef',
+	1,
+	'Door Ref',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblToRoom',
+	1,
+	'To Room',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblFromRoom',
+	1,
+	'From Room',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblMaterial',
+	1,
+	'Material',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblConfiguration',
+	1,
+	'Configuration',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblQty',
+	1,
+	'Qty',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblFireRating',
+	1,
+	'Fire Rating',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblAcousticRating',
+	1,
+	'Acoustic Rating',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblFrameWidth',
+	1,
+	'Frame Width',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblFrameHeight',
+	1,
+	'Frame Height',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummary',
+	'lblFrameDepth',
+	1,
+	'Frame Depth',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
