@@ -1,2 +1,2 @@
-exec dbo.spUT_SearchAllTables '987'
+exec dbo.spUT_SearchAllTables 'FG-6'
 

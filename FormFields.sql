@@ -1588,3 +1588,92 @@ VALUES
 )
 GO
 
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummaryByDoorType',
+	'lblTitle',
+	1,
+	'Door Schedule Summary By Door Type',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummaryByDoorType',
+	'lblDoorType',
+	1,
+	'Door Type',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptEMEADoorScheduleSummaryByDoorType',
+	'lblArchDoorType',
+	1,
+	'Arch Door Type',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
