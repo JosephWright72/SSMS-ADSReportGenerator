@@ -1,2 +1,2 @@
-exec dbo.spUT_SearchAllTables 'FG-6'
-
+exec dbo.spUT_SearchAllTables 'vendor'
+select * from aaosdoors

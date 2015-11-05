@@ -1,2 +1,2 @@
-delete from formfields where formname in('rptEMEATimberStdDoorSizes', 'rptEMEADoorScheduleSummary')
+delete from formfields where formname in('rptEMEATimberStdDoorSizes', 'rptEMEADoorScheduleSummary', 'rptEMEADoorScheduleSummaryByDoorType', 'rptEMEADoorsIronmongerySetSummary')
 GO
