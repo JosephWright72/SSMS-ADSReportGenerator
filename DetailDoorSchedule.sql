@@ -1,4 +1,4 @@
-DECLARE @ProjectID INT SET @ProjectID = 28520 SET ARITHABORT ON
+DECLARE @ProjectID INT SET @ProjectID = 28418 SET ARITHABORT ON
 SELECT AP.ID, AP.ProjectName, CASE WHEN AP.OriginalProjectID IS NOT NULL or AP.OriginalProjectID <> '0'
 	THEN CAST(AP.OriginalProjectID AS NVARCHAR(MAX))  +  '-'  +  CAST(AP.RevisionNumber AS NVARCHAR(MAX))
 	ELSE CAST(AP.ID AS NVARCHAR(MAX)) END AS NewProjID,
@@ -18,4 +18,5 @@ FROM AAOSDoors AD
 INNER JOIN AAOSProjects AP ON AP.ID = AD.ProjectID
 LEFT OUTER JOIN AAOSConsultants ACS ON AP.ArchConsultant = ACS.ID
 LEFT OUTER JOIN AAOSHWSets AH ON AP.ID = AH.ProjectID AND AD.HWSet = AH.SetName
-WHERE AP.ID = @ProjectID
+where ah.setname is not null and ad.qty>0 and ad.doorprice>0
+--WHERE AP.ID = @ProjectID
