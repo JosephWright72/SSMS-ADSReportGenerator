@@ -16,7 +16,7 @@
 	Sum(ISNULL(NULLIF(HW.Qty, ''), 0) * ISNULL(NULLIF(Doors.Qty,''), 1)) Quantity,
 	CAST((HW.PRICE/CASE WHEN HW.Qty = 0 THEN 1 ELSE HW.Qty END) AS DECIMAL(18, 2)) AS UnitRate,  
 	(Sum(ISNULL(NULLIF(HW.Qty, ''), 0) * ISNULL(NULLIF(Doors.Qty,''), 0))) * (CAST((HW.PRICE/CASE WHEN HW.Qty = 0 THEN 1 ELSE HW.Qty END) AS DECIMAL(18, 2))) AS ExtendedRate,  
-	Ltrim(Max(Notes.List)) AS SetNotes , ACS.firstname + ' ' + ACS.lastname ProjectOwner,  
+	ACS.firstname + ' ' + ACS.lastname ProjectOwner,  
 	CS.firstname + ' ' + CS.lastname SpecConsult,  
 	ACS.Email AS PrjOwnEmail , 
 	CS.Email AS SpecConEmail , 
@@ -85,33 +85,6 @@ FROM
 		GROUP  BY ProjectID,HWSet) Doors 
 	ON Doors.HWSet = HW.SetName 
 	AND  Doors.ProjectID = HW.ProjectID  
-	LEFT OUTER JOIN (
-		SELECT DISTINCT 
-			(ProjectID)ProjectID,  
-			Stuff((SELECT ' ',  Char(13),  +SetNotes [text()]  
-			FROM   (
-				SELECT DISTINCT 
-					(ProjectID),  
-					CASE WHEN Len(SetNotes) > 0 THEN (SetName + ' : '  + Replace(Replace(SetNotes, Char(13), ' '), Char(10), ' '))  ELSE NULL  END SetNotes  
-				FROM   
-					AAOSHWSets T  
-				WHERE  
-					ProjectID = @ProjectID 
-				AND  setnotes != ''  
-				GROUP  BY	
-					ProjectID,
-					SetName,
-					SetNotes) A  
-			WHERE  
-				ProjectID = @ProjectID  FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, ' ') List  
-		FROM   
-			AAOSHWSets T  
-		WHERE  
-			ProjectID = @ProjectID  
-		GROUP  BY 
-			ProjectID,
-			SetNotes) Notes 
-	ON Notes.ProjectID = AP.id  
 WHERE  (HW.ProjectID = @ProjectID)  
 AND (AP.ID = @ProjectID)  
 AND (PH.ProjectID = @ProjectID)  
