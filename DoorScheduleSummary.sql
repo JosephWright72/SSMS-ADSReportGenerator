@@ -1,7 +1,11 @@
-DECLARE @ProjectID INT SET @ProjectID = 28396 SET ARITHABORT ON
-SELECT AP.ID, AP.ProjectName, CASE WHEN AP.OriginalProjectID IS NOT NULL or AP.OriginalProjectID <> '0'
+DECLARE @ProjectID INT SET @ProjectID = 28478 SET ARITHABORT ON
+SELECT 
+	AP.ID, 
+	AP.ProjectName, 
+	CASE WHEN AP.OriginalProjectID IS NOT NULL or AP.OriginalProjectID <> '0'
 	THEN CAST(AP.OriginalProjectID AS NVARCHAR(MAX))  +  '-'  +  CAST(AP.RevisionNumber AS NVARCHAR(MAX))
 	ELSE CAST(AP.ID AS NVARCHAR(MAX)) END AS NewProjID,
+	CAST(AP.RevisionNumber AS NVARCHAR(MAX)) AS Revision,
 	ACS.FirstName + ' ' + ACS.LastName ProjectOwner, AD.Mark, AD.ToRoom, AD.FromRoom,
 	AD.DoorMaterial, CASE MAX(AH.Leaf) WHEN 'A' THEN 'Single' WHEN 'B' THEN 'Equal Pair' WHEN  'I' THEN 'Unequal Pairs' 
 	ELSE 'Single' END AS Leaf, AD.Qty, AD.FireRating, AD.AcousticRating, ROUND(AD.RoughWidth,1) AS FrameWidth, 

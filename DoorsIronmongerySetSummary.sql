@@ -1,7 +1,8 @@
-DECLARE @ProjectID INT SET @ProjectID = 28395 SET ARITHABORT ON
+DECLARE @ProjectID INT SET @ProjectID = 28478 SET ARITHABORT ON
 SELECT AP.ID, AP.ProjectName, CASE WHEN AP.OriginalProjectID IS NOT NULL or AP.OriginalProjectID <> '0'
 	THEN CAST(AP.OriginalProjectID AS NVARCHAR(MAX))  +  '-'  +  CAST(AP.RevisionNumber AS NVARCHAR(MAX))
 	ELSE CAST(AP.ID AS NVARCHAR(MAX)) END AS NewProjID,
+	CAST(AP.RevisionNumber AS NVARCHAR(MAX)) AS Revision,
 	ACS.FirstName + ' ' + ACS.LastName ProjectOwner, AD.Mark, AH.SetDesc, AH.SetName, AD.Qty,
 	CAST((AD.DoorPrice/CASE WHEN AD.Qty = 0 THEN 1 ELSE AD.Qty END) AS DECIMAL(18, 2)) AS UnitRate,
 	CASE WHEN DAY(GETDATE()) IN ( 1, 21, 31 ) THEN CONVERT(VARCHAR, DAY(GETDATE())) + 'st ' WHEN DAY(GETDATE()) IN ( 2, 22 ) 

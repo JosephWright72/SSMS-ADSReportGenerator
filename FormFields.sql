@@ -2295,10 +2295,40 @@ INSERT INTO AAOS_UAT_UK.dbo.FormFields
 VALUES
 (
 	'EN',
-	'rptEMEADetailDoorSchedule',
+	'rptGenericHeaders',
 	'lblDrawingsUsed',
 	1,
 	'Drawings Used',
+	'REPORT',
+	2,
+	'SimpleView',
+	'1',
+	0,
+	1
+)
+GO
+
+INSERT INTO AAOS_UAT_UK.dbo.FormFields
+(
+	Locale,
+	FormName,
+	ColName,
+	ColNumber,
+	VisibleColText,
+	Usage1Name,
+	Usage1Value,
+	Usage2Name,
+	Usage2Value,
+	DefaultWidth,
+	[Required]
+)
+VALUES
+(
+	'EN',
+	'rptGenericHeaders',
+	'lblRev',
+	1,
+	'Revision',
 	'REPORT',
 	2,
 	'SimpleView',
