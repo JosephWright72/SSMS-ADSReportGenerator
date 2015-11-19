@@ -5,6 +5,8 @@ Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "ADSReportGenerator", "ADSRe
 EndProject
 Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Stored Procedures", "Stored Procedures\Stored Procedures.ssmssqlproj", "{0AA68C2C-A5F7-4027-98FE-4C9596766A2C}"
 EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "MI", "..\MI\MI.ssmssqlproj", "{3AD41607-806D-4B87-B47A-D3B83365D011}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|Default = Default|Default
@@ -12,6 +14,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{90ED97DC-E31C-433E-88C9-FB872D60B6F4}.Default|Default.ActiveCfg = Default
 		{0AA68C2C-A5F7-4027-98FE-4C9596766A2C}.Default|Default.ActiveCfg = Default
+		{080C14CB-F053-47B7-A735-8A49B62CAA23}.Default|Default.ActiveCfg = Default
+		{3AD41607-806D-4B87-B47A-D3B83365D011}.Default|Default.ActiveCfg = Default
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
