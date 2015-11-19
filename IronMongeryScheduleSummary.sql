@@ -3,13 +3,14 @@
  SET @ProjectID = 28520
  SET @DOORFILTER = 2 
  SET ARITHABORT ON  
- SELECT APH.ImageID,img.Image_ID,
+ SELECT 
 	AP.ID ProjectReference,  
 	AP.ProjectName, 
 	CASE WHEN AP.OriginalProjectID IS NOT NULL or AP.OriginalProjectID <> '0' THEN CAST(AP.OriginalProjectID AS nvarchar(max))  +  '-'  +  CAST(AP.RevisionNumber AS nvarchar(max)) ELSE CAST(AP.ID AS nvarchar(max)) END as NewProjID, 
 	(ACS.FirstName + ' ' + ACS.LastName) AS ProjectOwner,  
 	CASE WHEN Day(Getdate()) IN ( 1, 21, 31 ) THEN CONVERT(VARCHAR, Day(Getdate())) + 'st ' WHEN Day(Getdate()) IN ( 2, 22 ) THEN CONVERT(VARCHAR, Day(Getdate())) + 'nd ' WHEN Day(Getdate()) IN ( 3, 23 ) THEN CONVERT(VARCHAR, Day(Getdate())) + 'rd ' ELSE CONVERT(VARCHAR, Day(Getdate())) + 'th ' END + Datename(month, Getdate()) + ' '  + CONVERT(VARCHAR, Year(Getdate()))TodaysDateEN, getdate() TodaysDate, 
-	'\\segbgsis103\AlanT\Collateral Data UK\' + CASE WHEN LEFT([FileName], 1) = '\' THEN RIGHT([FileName], LEN([FileName])-1) ELSE [FileName] END as [Image], 
+	'\\segbgsis103\AlanT\Collateral Data UK\' + CASE WHEN LEFT(img.[FileName], 1) = '\' THEN RIGHT(img.[FileName], LEN(img.[FileName])-1) ELSE img.[FileName] END as [Image], 
+	'file:' + REPLACE('//segbgsis103/AlanT/Collateral Data UK/' + CASE WHEN LEFT(pdf.[FileName], 1) = '\' THEN RIGHT(pdf.[FileName], LEN(pdf.[FileName])-1) ELSE pdf.[FileName] END, '\', '/') as [PDF], 
 	HW.Description ProductCode,  
 	HW.TypeDescription   ProductDescription,  
 	PH.UOM,  
@@ -50,7 +51,28 @@ FROM
 		ON x.ID = APH.ID  GROUP BY [Description], ProjectID ) APH 
 	ON  CAST(HW.[DESCRIPTION] AS VARBINARY(MAX)) =  CAST(APH.[description] AS VARBINARY(MAX)) 
 	AND APH.ProjectID=HW.PROJECTID
+	LEFT OUTER JOIN (
+		SELECT	[Description], MIN(x.ImageID) AS ImageID, ProjectID FROM AAOSProjectHardware APH
+		INNER JOIN (
+			SELECT A.ID, Split.a.value('.', 'VARCHAR(MAX)') AS ImageID  
+			FROM  (
+				SELECT ID,  CAST ('<M>' + REPLACE([imageids], ',', '</M><M>') + '</M>' AS XML) AS String  
+				FROM  AAOSProjectHardware 
+				WHERE ProjectID = @ProjectID) 
+			AS A CROSS APPLY String.nodes ('/M') AS Split(a)
+			WHERE ISNULL(Split.a.value('.', 'VARCHAR(MAX)'),'') <> ''
+			UNION
+			SELECT ID,ImageIDs FROM AAOSProjectHardware where ProjectID = @ProjectID AND ISNULL(ImageIDs,'') ='' ) x
+			INNER JOIN 
+				(SELECT Image_id, [Filename] 
+				FROM AAOS_UAT_UK.dbo.images img 
+				WHERE ((UPPER([Filename]) LIKE '%.PDF') OR ISNULL([Filename],'') = '')) img 
+			ON  x.ImageID = img.Image_id
+		ON x.ID = APH.ID  GROUP BY [Description], ProjectID ) APH2
+	ON  CAST(HW.[DESCRIPTION] AS VARBINARY(MAX)) =  CAST(APH2.[description] AS VARBINARY(MAX)) 
+	AND APH2.ProjectID=HW.PROJECTID
 	LEFT OUTER JOIN AAOS_UAT_UK.dbo.images img ON APH.ImageID= img.Image_ID
+	LEFT OUTER JOIN AAOS_UAT_UK.dbo.images pdf ON APH2.ImageID= pdf.Image_ID
 	LEFT OUTER JOIN (
 		SELECT 
 			ProjectID,  
@@ -108,5 +130,6 @@ GROUP  BY APH.ImageID,img.Image_ID,
 	CS.Phone, 
 	ACS.Title, 
 	CS.Title,
-	[Filename]
-ORDER  BY 5
+	img.[Filename],
+	pdf.[Filename]
+ORDER  BY PH.DHI
